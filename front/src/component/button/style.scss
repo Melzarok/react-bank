@@ -1,0 +1,30 @@
+@use "../../style" as s;
+
+.btn {
+  font-size: 16px;
+  padding: s.space(5);
+  border-radius: 12px;
+  line-height: 100%;
+  cursor: pointer;
+  transition: all 0.6s ease;
+
+  &:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+  &--purple-filled {
+    background-color: s.color("primary");
+    color: #fff;
+  }
+
+  &--purple-outline {
+    border: 1px solid s.color("primary");
+    color: s.color("primary");
+  }
+}
+
+.btn--purple-outline:hover {
+  opacity: 1;
+  background-color: #eeeeee;
+}

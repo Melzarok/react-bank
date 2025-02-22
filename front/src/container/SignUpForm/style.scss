@@ -1,0 +1,7 @@
+@use "../../style" as s;
+
+.link {
+  color: s.color(primary);
+
+  @include s.click;
+}

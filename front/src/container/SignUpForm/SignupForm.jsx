@@ -11,7 +11,7 @@ const SignupForm = () => {
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setError("Паролі не співпадають");
@@ -20,6 +20,37 @@ const SignupForm = () => {
       setError("");
       setIsError(false);
       console.log("Registration successful:", { email, password });
+      try {
+        const userData = { email, password };
+        console.log("Отправляемые данные:", userData);
+
+        const response = await fetch("signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        });
+
+        console.log("Статус ответа:", response.status);
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error("Ошибка ответа:", errorText);
+          throw new Error(`Ошибка сервера: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Успешный ответ:", data);
+
+        setError("");
+        setIsError(false);
+
+        return data;
+      } catch (error) {
+        console.error("Ошибка при регистрации:", error);
+        setError(error.message || "Виникла помилка при реєстрації");
+      }
     }
   };
 

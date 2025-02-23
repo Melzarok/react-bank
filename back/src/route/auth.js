@@ -7,21 +7,6 @@ const { User } = require('../class/user')
 const { Confirm } = require('../class/confirm')
 const { Session } = require('../class/session')
 
-// User.create({
-//   email: 'test@mail.com',
-//   password: 123,
-// })
-
-// User.create({
-//   email: 'test2@mail.com',
-//   password: 123,
-// })
-
-// User.create({
-//   email: 'test3@mail.com',
-//   password: 123,
-// })
-
 // ================================================================
 
 router.get('/signup', function (req, res) {
@@ -44,6 +29,9 @@ router.get('/signup', function (req, res) {
 })
 
 router.post('/signup', function (req, res) {
+  console.log('Получен POST запрос на /signup')
+  console.log('Body:', req.body)
+
   const { email, password } = req.body
 
   console.log('1', email, password)
@@ -65,13 +53,14 @@ router.post('/signup', function (req, res) {
 
     const newUser = User.create({ email, password })
 
-    const session = Session.create(newUser)
+    // const session = Session.create(newUser)
 
-    Confirm.create(newUser.email)
+    // Confirm.create(newUser.email)
 
     return res.status(200).json({
       message: 'Користувач успішно зареєстрований',
-      session,
+      // session,
+      user: newUser,
     })
   } catch (err) {
     return res.status(400).json({

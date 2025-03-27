@@ -1,17 +1,17 @@
 import "./style.scss";
 import BackButton from "../../component/back-button";
-import SignupForm from "../../container/SignupForm/SignupForm";
+import RecoveryForm from "../../container/Recovery/recoveryForm";
 
-const SignUpPage = () => {
+const RecoveryPage = () => {
   return (
     <div className="page">
       <header>
         <BackButton />
       </header>
 
-      <SignupForm />
+      <RecoveryForm />
     </div>
   );
 };
 
-export default SignUpPage;
+export default RecoveryPage;

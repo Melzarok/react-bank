@@ -1,6 +1,7 @@
 $colorMap: (
   primary: rgba(119, 92, 229, 1),
   error: rgba(242, 49, 82, 1),
+  success: rgb(51, 172, 51),
 );
 
 @function color($key) {

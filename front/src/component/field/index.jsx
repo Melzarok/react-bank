@@ -8,6 +8,7 @@ function Field({
   type,
   onChange,
   errorText,
+  autoComplete,
 }) {
   const containerClass = `field__container ${
     className?.includes("border--error") ? "border--error" : ""
@@ -18,16 +19,18 @@ function Field({
 
   return (
     <div className={containerClass}>
-      <label htmlFor={name} className="field__title">
-        {label}
-      </label>
       <input
+        required
         className={inputClass}
         placeholder={placeholder}
         name={name}
         type={type}
         onChange={onChange}
+        autoComplete={autoComplete}
       />
+      <label htmlFor={name} className="field__title">
+        {label}
+      </label>
 
       {errorText && <span>{errorText}</span>}
     </div>

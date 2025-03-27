@@ -2,7 +2,7 @@ import "./style.scss";
 
 const Button = ({ children, onClick, variant = "filled" }) => {
   return (
-    <button onClick={onClick} className={`btn btn--purple-${variant}`}>
+    <button className={`btn btn--purple-${variant}`} onClick={onClick}>
       {children}
     </button>
   );

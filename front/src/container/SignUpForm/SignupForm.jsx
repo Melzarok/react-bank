@@ -1,10 +1,15 @@
 import { useState } from "react";
 import Field from "../../component/field";
 import Button from "../../component/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.scss";
+import { saveSession } from "../../script/session";
+import { useAuth } from "../../contexts/AuthContext";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
+  const { setIsAuthenticated } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -19,12 +24,10 @@ const SignupForm = () => {
     } else {
       setError("");
       setIsError(false);
-      console.log("Registration successful:", { email, password });
+
       try {
         const userData = { email, password };
-        console.log("Отправляемые данные:", userData);
-
-        const response = await fetch("signup", {
+        const response = await fetch("http://localhost:4000/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -32,19 +35,24 @@ const SignupForm = () => {
           body: JSON.stringify(userData),
         });
 
-        console.log("Статус ответа:", response.status);
-
         if (!response.ok) {
-          const errorText = await response.text();
-          console.error("Ошибка ответа:", errorText);
           throw new Error(`Ошибка сервера: ${response.status}`);
         }
 
         const data = await response.json();
-        console.log("Успешный ответ:", data);
+
+        if (data.session) {
+          saveSession(data.session);
+          localStorage.setItem("sessionToken", data.session.token);
+          console.log("ses", data.session);
+        }
 
         setError("");
         setIsError(false);
+
+        navigate("/signup-confirm", {
+          state: { email },
+        });
 
         return data;
       } catch (error) {
@@ -67,6 +75,7 @@ const SignupForm = () => {
             label="Email"
             type="email"
             value={email}
+            autoComplete="email"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>

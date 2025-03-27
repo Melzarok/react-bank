@@ -1,72 +1,77 @@
-import React, { createContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import WellcomePage from "./pages/welcomePage";
 import SignupPage from "./pages/signup";
 import SignInPage from "./pages/login";
+import SignupConfirmPage from "./pages/signup-confirm/index";
+import { AuthProvider } from "./contexts/AuthContext";
+import AuthRoute from "./container/AuthRoute";
+import PrivateRoute from "./container/PrivateRoute";
+import RecoveryPage from "./pages/recovery";
+import RecoveryConfirmPage from "./pages/recovery-confirm";
 
 function App() {
   return (
-    // <AuthContext.Provider value={authContextData}>
-    <BrowserRouter>
-      <Routes>
-        <Route
-          index
-          element={
-            // <AuthRoute>
-            <WellcomePage />
-            // </AuthRoute>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            // <AuthRoute>
-            <SignupPage />
-            /* </AuthRoute> */
-          }
-        />
-        <Route
-          path="/signup-confirm"
-          // element={
-          //   <PrivateRoute>
-          //     <SignupConfirmPage />
-          //   </PrivateRoute>
-          // }
-        />
-        <Route
-          path="/signin"
-          element={
-            // <AuthRoute>
-            <SignInPage />
-            // </AuthRoute>
-          }
-        />
-        {/* <Route
-          path="/recovery"
-          element={
-            <AuthRoute>
-              <RecoveryPage />
-            </AuthRoute>
-          }
-        />
-        <Route
-          path="/recovery-confirm"
-          element={
-            <AuthRoute>
-              <RecoveryConfirmPage />
-            </AuthRoute>
-          }
-        />
-        <Route
-          path="/balance"
-          element={
-            <PrivateRoute>
-              <BalancePage />
-            </PrivateRoute>
-          }
-        />
-        <Route
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            index
+            element={
+              <AuthRoute>
+                <WellcomePage />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <AuthRoute>
+                <SignupPage />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/signup-confirm"
+            element={
+              <PrivateRoute>
+                <SignupConfirmPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <AuthRoute>
+                <SignInPage />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/recovery"
+            element={
+              <AuthRoute>
+                <RecoveryPage />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/recovery-confirm"
+            element={
+              <AuthRoute>
+                <RecoveryConfirmPage />
+              </AuthRoute>
+            }
+          />
+          {/* <Route
+            path="/balance"
+            element={
+              <PrivateRoute>
+                <BalancePage />
+              </PrivateRoute>
+            }
+          /> */}
+          {/* <Route
           path="/notifications"
           element={
             <PrivateRoute>
@@ -105,11 +110,11 @@ function App() {
               <TransactionPage />
             </PrivateRoute>
           }
-        /> */}
-        {/* <Route path="*" Component={Error} /> } */}
-      </Routes>
-    </BrowserRouter>
-    // </AuthContext.Provider>
+        />  */}
+          {/* <Route path="*" Component={Error} /> } */}
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

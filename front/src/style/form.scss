@@ -11,6 +11,20 @@
   .field {
     border-color: s.color(error);
   }
+  .field ~ label {
+    color: s.color(error);
+  }
+}
+
+.border--success {
+  border-color: s.color(success);
+  .field__title {
+    color: inherit;
+  }
+
+  .field {
+    border-color: s.color(success);
+  }
 }
 
 .form__section {
@@ -33,7 +47,6 @@
 }
 .button {
   padding: 20px;
-  background: var(--primary);
   border-radius: 12px;
   color: #fff;
 }
@@ -51,7 +64,7 @@
 
 .form__title {
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .form__sub-title {
@@ -68,4 +81,18 @@
 .form__error {
   color: s.color(error);
   font-size: 14px;
+}
+
+.error-message {
+  color: #ff0000;
+  text-align: center;
+  font-size: 14px;
+  height: 14px;
+}
+
+.success-message {
+  color: rgb(51, 172, 51);
+  text-align: center;
+  font-size: 14px;
+  height: 14px;
 }

@@ -1,17 +1,16 @@
 @use "../../style" as s;
 
 .btn {
+  position: relative;
+  width: 100%;
+  color: white;
   font-size: 16px;
-  padding: s.space(5);
+  font-weight: 500;
+  letter-spacing: 1.5px;
   border-radius: 12px;
-  line-height: 100%;
   cursor: pointer;
-  transition: all 0.6s ease;
-
-  &:hover {
-    opacity: 0.7;
-    cursor: pointer;
-  }
+  overflow: hidden;
+  padding: s.space(5);
 
   &--purple-filled {
     background-color: s.color("primary");
@@ -19,12 +18,40 @@
   }
 
   &--purple-outline {
-    border: 1px solid s.color("primary");
+    border: 1.5px solid s.color("primary");
     color: s.color("primary");
   }
 }
 
-.btn--purple-outline:hover {
-  opacity: 1;
-  background-color: #eeeeee;
+.btn::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.253);
+  height: 100%;
+  width: 150px;
+  top: 0;
+  left: -200px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 100px;
+  filter: blur(10px);
+  transition-duration: 0.8s;
+}
+
+.btn--purple-outline::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(119, 92, 229, 0.253);
+  height: 100%;
+  width: 150px;
+  top: 0;
+  left: -200px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 100px;
+  filter: blur(10px);
+  transition-duration: 0.8s;
+}
+
+.btn:hover::after {
+  transform: translateX(600px);
+  transition-duration: 0.8s;
 }

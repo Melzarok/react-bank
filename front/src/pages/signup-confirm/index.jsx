@@ -1,17 +1,17 @@
 import "./style.scss";
 import BackButton from "../../component/back-button";
-import SignupForm from "../../container/SignupForm/SignupForm";
+import SignupConfirm from "../../container/Signup-Confirm/SignupConfirm";
 
-const SignUpPage = () => {
+const SignupConfirmPage = () => {
   return (
     <div className="page">
       <header>
         <BackButton />
       </header>
 
-      <SignupForm />
+      <SignupConfirm />
     </div>
   );
 };
 
-export default SignUpPage;
+export default SignupConfirmPage;

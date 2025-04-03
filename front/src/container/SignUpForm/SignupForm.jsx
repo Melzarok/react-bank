@@ -1,8 +1,8 @@
+import "./style.scss";
 import { useState } from "react";
 import Field from "../../component/field";
 import Button from "../../component/button";
 import { Link, useNavigate } from "react-router-dom";
-import "./style.scss";
 import { saveSession } from "../../script/session";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -46,7 +46,7 @@ const SignupForm = () => {
           localStorage.setItem("sessionToken", data.session.token);
           console.log("ses", data.session);
         }
-
+        setIsAuthenticated(false);
         setError("");
         setIsError(false);
 

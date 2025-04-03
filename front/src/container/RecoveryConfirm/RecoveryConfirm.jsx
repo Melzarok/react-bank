@@ -20,7 +20,7 @@ const RecoveryConfirm = () => {
   return (
     <form className="page__section" method="POST" onSubmit={handleSubmit}>
       <div className="title-container">
-        <h1 className="form__title"> password</h1>
+        <h1 className="form__title">Recover password</h1>
         <p className="form__sub-title">Choose a recovery method</p>
       </div>
 

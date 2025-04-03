@@ -1,8 +1,8 @@
 import React from "react";
-import "./style.scss";
 import { useNavigate } from "react-router-dom";
 import coinsImage from "./coins.png";
 import Button from "../../component/button";
+import "./style.scss";
 
 const WellcomePage = () => {
   const navigate = useNavigate();

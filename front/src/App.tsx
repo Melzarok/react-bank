@@ -9,6 +9,7 @@ import AuthRoute from "./container/AuthRoute";
 import PrivateRoute from "./container/PrivateRoute";
 import RecoveryPage from "./pages/recovery";
 import RecoveryConfirmPage from "./pages/recovery-confirm";
+import BalancePage from "./pages/balance";
 
 function App() {
   return (
@@ -63,14 +64,14 @@ function App() {
               </AuthRoute>
             }
           />
-          {/* <Route
+          <Route
             path="/balance"
             element={
               <PrivateRoute>
                 <BalancePage />
               </PrivateRoute>
             }
-          /> */}
+          />
           {/* <Route
           path="/notifications"
           element={

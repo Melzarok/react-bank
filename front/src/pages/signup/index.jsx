@@ -1,4 +1,3 @@
-import "./style.scss";
 import BackButton from "../../component/back-button";
 import SignupForm from "../../container/SignupForm/SignupForm";
 

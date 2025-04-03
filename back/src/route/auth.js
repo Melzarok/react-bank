@@ -84,7 +84,6 @@ router.get('/signup-confirm', function (req, res) {
     // вказуємо назву контейнера
     name: 'signup-confirm',
     // вказуємо назву компонентів
-    component: ['back-button', 'field'],
 
     // вказуємо назву сторінки
     title: 'Signup confirm page',
@@ -160,7 +159,6 @@ router.get('/signin', function (req, res) {
     // вказуємо назву контейнера
     name: 'login',
     // вказуємо назву компонентів
-    component: ['back-button', 'field', 'field-password'],
 
     // вказуємо назву сторінки
     title: 'Login confirm page',
@@ -218,7 +216,6 @@ router.get('/recovery', function (req, res) {
     // вказуємо назву контейнера
     name: 'recovery',
     // вказуємо назву компонентів
-    component: ['back-button', 'field'],
 
     // вказуємо назву сторінки
     title: 'Recovery page',
@@ -270,7 +267,6 @@ router.get('/recovery-confirm', function (req, res) {
     // вказуємо назву контейнера
     name: 'recovery-confirm',
     // вказуємо назву компонентів
-    component: ['back-button', 'field', 'field-password'],
 
     // вказуємо назву сторінки
     title: 'Recovery confirm page',

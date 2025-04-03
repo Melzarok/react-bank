@@ -1,5 +1,4 @@
 @use "./var" as s;
-@import url("../../index.css");
 
 .border--error {
   color: s.color(error);
@@ -18,8 +17,14 @@
 
 .border--success {
   border-color: s.color(success);
+
   .field__title {
-    color: inherit;
+    color: s.color(success);
+  }
+
+  .field:focus ~ label,
+  .field:valid ~ label {
+    color: s.color(success);
   }
 
   .field {

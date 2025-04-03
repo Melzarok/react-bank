@@ -11,11 +11,15 @@ function Field({
   autoComplete,
 }) {
   const containerClass = `field__container ${
-    className?.includes("border--error") ? "border--error" : ""
+    className?.includes("border--error")
+      ? "border--error"
+      : className?.includes("border--success")
+      ? "border--success"
+      : ""
   }`;
   const inputClass = `field ${
     className?.includes("border--error") ? "" : className || ""
-  }`;
+  } `;
 
   return (
     <div className={containerClass}>

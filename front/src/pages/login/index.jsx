@@ -1,4 +1,3 @@
-import "./style.scss";
 import BackButton from "../../component/back-button";
 import SigninForm from "../../container/SignInForm/SigninForm";
 import { useNavigate } from "react-router-dom";

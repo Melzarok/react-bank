@@ -7,7 +7,10 @@ const { User } = require('../class/user')
 const { Confirm } = require('../class/confirm')
 const { Session } = require('../class/session')
 
-User.create({ email: 'test@mail.com', password: '123' })
+User.create({
+  email: 'test@mail.com',
+  password: '123',
+})
 
 // ================================================================
 

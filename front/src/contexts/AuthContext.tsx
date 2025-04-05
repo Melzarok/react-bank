@@ -2,24 +2,32 @@ import { createContext, useContext, useState } from "react";
 import { saveSession } from "../script/session";
 
 interface AuthContextType {
+  isAuthenticated: boolean;
+  setIsAuthenticated: (value: boolean) => void;
   token: string | null;
   user: any;
+  isConfirm: boolean;
   login: (email: string, password: string) => Promise<any>;
   logout: () => void;
-  setIsAuthenticated: (value: boolean) => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
+  isAuthenticated: false,
+  setIsAuthenticated: () => {},
   token: null,
   user: null,
+  isConfirm: false,
   login: async () => {},
   logout: () => {},
-  setIsAuthenticated: () => {},
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("sessionToken"));
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>(null);
+
+  const isConfirm = JSON.parse(localStorage.getItem("sessionAuth") || "{}")
+    ?.user?.isConfirm;
 
   const login = async (email: string, password: string) => {
     try {
@@ -42,6 +50,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         localStorage.setItem("sessionToken", data.session.token);
         setToken(data.session.token);
         setUser(data.session.user);
+        setIsAuthenticated(true);
         return data;
       }
     } catch (error) {
@@ -54,28 +63,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     saveSession(null);
     setToken(null);
     setUser(null);
-  };
-
-  const setIsAuthenticated = (isAuthenticated: boolean) => {
-    if (isAuthenticated) {
-      const token = localStorage.getItem("sessionToken");
-
-      console.log("token from context", token);
-
-      if (token) {
-        setToken(token);
-      } else {
-        throw new Error("Токен не найден");
-      }
-    } else {
-      setToken(null);
-      setUser(null);
-    }
+    setIsAuthenticated(false);
   };
 
   return (
     <AuthContext.Provider
-      value={{ token, user, login, logout, setIsAuthenticated }}
+      value={{
+        isAuthenticated,
+        setIsAuthenticated,
+        token,
+        user,
+        login,
+        logout,
+        isConfirm,
+      }}
     >
       {children}
     </AuthContext.Provider>
@@ -85,7 +86,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("Помилка з використанням AuthContext");
+    throw new Error("Ошибка при использовании AuthContext");
   }
   return context;
 };

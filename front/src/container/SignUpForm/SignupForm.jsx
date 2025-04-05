@@ -4,11 +4,9 @@ import Field from "../../component/field";
 import Button from "../../component/button";
 import { Link, useNavigate } from "react-router-dom";
 import { saveSession } from "../../script/session";
-import { useAuth } from "../../contexts/AuthContext";
 
 const SignupForm = () => {
   const navigate = useNavigate();
-  const { setIsAuthenticated } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,13 +44,17 @@ const SignupForm = () => {
           localStorage.setItem("sessionToken", data.session.token);
           console.log("ses", data.session);
         }
-        setIsAuthenticated(false);
+
         setError("");
         setIsError(false);
 
-        navigate("/signup-confirm", {
-          state: { email },
-        });
+        if (email) {
+          navigate("/signup-confirm", {
+            state: { email },
+          });
+        } else {
+          console.error("Email is missing");
+        }
 
         return data;
       } catch (error) {

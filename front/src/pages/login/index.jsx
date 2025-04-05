@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const SignInPage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    if (window.session) {
-      navigate("/");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (window.session) {
+  //     navigate("/");
+  //   }
+  // }, [navigate]);
 
   return (
     <div className="page">

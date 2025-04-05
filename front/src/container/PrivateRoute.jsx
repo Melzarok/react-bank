@@ -4,9 +4,13 @@ import { AuthContext } from "../contexts/AuthContext";
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useContext(AuthContext);
+  const { isConfirm } = useContext(AuthContext);
 
-  if (!isAuthenticated) {
-    return <Navigate to="/signin" />;
+  console.log("auth", isAuthenticated);
+  console.log("Confirm", isConfirm);
+
+  if (isAuthenticated) {
+    console.log("isAuthenticated подтвержден", isAuthenticated);
   }
 
   return children;

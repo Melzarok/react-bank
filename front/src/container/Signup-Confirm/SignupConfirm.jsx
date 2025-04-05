@@ -2,13 +2,15 @@ import { useState, useRef, useContext } from "react";
 import Button from "../../component/button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import { saveSession } from "../../script/session";
+
 import "./style.scss";
 
 const SignupConfirm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const email = location.state?.email;
-  const { setIsAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
@@ -63,6 +65,7 @@ const SignupConfirm = () => {
         setError(data.message);
         return;
       }
+      saveSession(data.session);
 
       setIsAuthenticated(true);
       navigate("/balance");

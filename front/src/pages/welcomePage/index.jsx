@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import coinsImage from "./coins.png";
 import Button from "../../component/button";
 import "./style.scss";
+import { useCookies } from "react-cookie";
 
 const WellcomePage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,19 @@ const WellcomePage = () => {
           Sign In
         </Button>
       </div>
+
+      {/* <div style={{ padding: "20px", fontFamily: "Arial" }}>
+        <h1>Тест работы с Cookies</h1>
+        <button onClick={handleSetCookie} style={{ margin: "5px" }}>
+          Установить Cookie
+        </button>
+        <button onClick={handleGetCookie} style={{ margin: "5px" }}>
+          Получить Cookie
+        </button>
+        <button onClick={handleRemoveCookie} style={{ margin: "5px" }}>
+          Удалить Cookie
+        </button>
+      </div> */}
     </div>
   );
 };

@@ -2,8 +2,6 @@ import { createContext, useContext, useState } from "react";
 import { saveSession } from "../script/session";
 
 interface AuthContextType {
-  isAuthenticated: boolean;
-  setIsAuthenticated: (value: boolean) => void;
   token: string | null;
   user: any;
   isConfirm: boolean;
@@ -12,8 +10,6 @@ interface AuthContextType {
 }
 
 export const AuthContext = createContext<AuthContextType>({
-  isAuthenticated: false,
-  setIsAuthenticated: () => {},
   token: null,
   user: null,
   isConfirm: false,
@@ -22,7 +18,6 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("sessionToken"));
   const [user, setUser] = useState<any>(null);
 
@@ -50,7 +45,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         localStorage.setItem("sessionToken", data.session.token);
         setToken(data.session.token);
         setUser(data.session.user);
-        setIsAuthenticated(true);
         return data;
       }
     } catch (error) {
@@ -63,14 +57,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     saveSession(null);
     setToken(null);
     setUser(null);
-    setIsAuthenticated(false);
   };
 
   return (
     <AuthContext.Provider
       value={{
-        isAuthenticated,
-        setIsAuthenticated,
         token,
         user,
         login,
